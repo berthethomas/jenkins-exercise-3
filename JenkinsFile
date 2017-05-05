@@ -1,7 +1,9 @@
 node {
     String configFile = readFile 'conf/bdd.conf';
-
-    withCredentials([usernameColonPassword(credentialsId: "${env.env}", variable: 'env_dev')]) {
+withCredentials(
+                [
+                    [$class: 'UsernamePassword', credentialsId: "${env.env}", variable: 'env_dev']
+                ]) {
         configFile = configFile.replace('"user": null,', '"user": "'+ env_dev.split(':')[0]+'",');
         configFile = configFile.replace('"password": null', '"password": "' + env_dev.split(':')[1]+'"');
     }
