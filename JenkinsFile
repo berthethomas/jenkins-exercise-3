@@ -1,5 +1,4 @@
 node {
-    git 'https://github.com/berthethomas/jenkins-exercise-3';
     String configFile = readFile 'conf/bdd.conf';
 
     withCredentials([usernameColonPassword(credentialsId: "${env.env}", variable: 'env_dev')]) {
